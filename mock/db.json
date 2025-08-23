@@ -1,0 +1,108 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "demo@user.com",
+      "password": "Demo1234!",
+      "firstName": "Demo",
+      "lastName": "User",
+      "gender": "F",
+      "birthDate": "1995-05-20"
+    },
+    {
+      "id": "5740",
+      "firstName": "İrem",
+      "lastName": "Aksoy",
+      "email": "aksoyirem612@gmail.com",
+      "password": "Adana19559",
+      "gender": "F",
+      "birthDate": "1997-11-14"
+    },
+    {
+      "id": "924e",
+      "firstName": "Ceren",
+      "lastName": "Aksoy",
+      "email": "aksoyceren@gmail.com",
+      "password": "Test123456",
+      "gender": "F",
+      "birthDate": "2020-05-11"
+    }
+  ],
+  "cities": [
+    {
+      "id": "34",
+      "name": "İstanbul"
+    },
+    {
+      "id": "6",
+      "name": "Ankara"
+    },
+    {
+      "id": "35",
+      "name": "İzmir"
+    },
+    {
+      "id": "16",
+      "name": "Bursa"
+    }
+  ],
+  "trips": [
+    {
+      "id": "1001",
+      "fromCityId": 34,
+      "toCityId": 6,
+      "date": "2025-08-25",
+      "time": "09:00",
+      "price": 450,
+      "busLayout": {
+        "rows": 10,
+        "colsPerSide": 2
+      },
+      "occupiedSeats": [
+        {
+          "seatNo": "1A",
+          "gender": "M"
+        },
+        {
+          "seatNo": "1B",
+          "gender": "F"
+        },
+        {
+          "seatNo": "3B",
+          "gender": "M"
+        }
+      ]
+    },
+    {
+      "id": "1002",
+      "fromCityId": 34,
+      "toCityId": 6,
+      "date": "2025-08-25",
+      "time": "14:00",
+      "price": 520,
+      "busLayout": {
+        "rows": 10,
+        "colsPerSide": 2
+      },
+      "occupiedSeats": []
+    },
+    {
+      "id": "1003",
+      "fromCityId": 6,
+      "toCityId": 34,
+      "date": "2025-08-26",
+      "time": "18:30",
+      "price": 480,
+      "busLayout": {
+        "rows": 10,
+        "colsPerSide": 2
+      },
+      "occupiedSeats": [
+        {
+          "seatNo": "2A",
+          "gender": "F"
+        }
+      ]
+    }
+  ]
+}
