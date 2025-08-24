@@ -6,6 +6,7 @@ import { register as registerUser } from "@/slices/authSlice";
 import { useRouter } from "next/navigation";
 import Select from "@/components/Select";
 import DatePicker from "@/components/DatePicker";
+import { User } from "@/slices/authSlice";
 import type { RegisterForm } from "../../types/authTypes";
 import { genders } from "@/data";
 import {
@@ -54,6 +55,9 @@ export default function RegisterPage() {
   type RegisterPayload = Omit<User, "id">;
 
   const onSubmit = async (values: RegisterForm) => {
+    if (!values.gender || !values.birthDate) {
+      return;
+    }
     const payload: RegisterPayload = {
       firstName: values.firstName,
       lastName: values.lastName,
