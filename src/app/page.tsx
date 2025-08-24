@@ -6,6 +6,7 @@ import HomePageContent from "@/components/HomePageContent";
 
 export default function HomePage() {
   const user = useAppSelector((s) => s.auth.user);
+
   const router = useRouter();
 
   useEffect(() => {
