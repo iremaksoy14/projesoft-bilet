@@ -18,10 +18,10 @@ export default function DatePicker({
       <Popover.Button
         onClick={() => setOpen((v) => !v)}
         className="w-full h-11 rounded-lg border border-gray-300 bg-white px-3 text-left
-                   focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-500 "
+                   focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-700"
       >
         {value ? (
-          value.toLocaleDateString()
+          value.toLocaleDateString("tr-TR")
         ) : (
           <span className="text-gray-500">gg.aa.yyyy</span>
         )}
@@ -66,7 +66,7 @@ export default function DatePicker({
                 }
               }}
               captionLayout="dropdown"
-              fromYear={1950}
+              fromYear={1990}
               toYear={2025}
             />
           </Popover.Panel>
