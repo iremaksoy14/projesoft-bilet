@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { baseURL } from "../lib/baseUrl";
-import { saveUser, loadUser, clearUser } from "@/lib/storage";
+import { saveUser, clearUser } from "@/lib/storage";
 export interface User {
   id: number;
   email: string;

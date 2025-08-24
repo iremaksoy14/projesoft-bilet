@@ -11,6 +11,7 @@ import { InfoPill } from "@/components/InfoPill";
 import { FormArea } from "@/components/FormArea";
 import { Row } from "@/components/Row";
 import { SuccessMessage } from "@/components/messages/SuccessMessage";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 export default function PaymentPage() {
   const sp = useSearchParams();
@@ -72,10 +73,18 @@ export default function PaymentPage() {
 
       setSuccess(true);
       setTimeout(() => router.push("/"), 4000);
-    } catch (e: any) {
-      const msg =
-        e?.data?.message ||
-        "İşlem sırasında bir sorun oluştu. Koltuklar dolu olabilir.";
+    } catch (err) {
+      let msg = "İşlem sırasında bir sorun oluştu. Koltuklar dolu olabilir.";
+
+      const fbqErr = err as FetchBaseQueryError;
+      if (
+        fbqErr?.data &&
+        typeof fbqErr.data === "object" &&
+        "message" in fbqErr.data
+      ) {
+        msg = (fbqErr.data as { message: string }).message;
+      }
+
       setErr(msg);
     } finally {
       setLoading(false);

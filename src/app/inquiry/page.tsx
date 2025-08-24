@@ -27,7 +27,7 @@ export default function InquiryPage() {
 
   const toCity = cityById.get(toCityId) ?? "—";
   const processed = useMemo(() => {
-    let list = [...(trips ?? [])];
+    const list = [...(trips ?? [])];
     list.sort((a, b) => a.price - b.price);
     return list;
   }, [trips]);

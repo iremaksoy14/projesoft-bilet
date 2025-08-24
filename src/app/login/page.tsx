@@ -21,7 +21,10 @@ export default function LoginPage() {
 
   const onSubmit = async (values: LoginFormValues) => {
     const user = await dispatch(login(values));
-    if ((user as any).meta.requestStatus === "fulfilled") router.push("/");
+    // if ((user as any).meta.requestStatus === "fulfilled") router.push("/");
+    if (login.fulfilled.match(user)) {
+      router.push("/");
+    }
   };
 
   return (

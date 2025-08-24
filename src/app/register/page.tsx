@@ -51,16 +51,23 @@ export default function RegisterPage() {
     gender: null,
     birthDate: null,
   };
+  type RegisterPayload = Omit<User, "id">;
 
   const onSubmit = async (values: RegisterForm) => {
-    const payload = {
-      ...values,
+    const payload: RegisterPayload = {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      email: values.email,
+      password: values.password,
+      gender: values.gender, // "M" | "F"
       birthDate: values.birthDate
         ? values.birthDate.toISOString().slice(0, 10)
         : "",
-    } as any;
+    };
     const act = await dispatch(registerUser(payload));
-    if ((act as any).meta.requestStatus === "fulfilled") router.push("/login");
+    if (registerUser.fulfilled.match(act)) {
+      router.push("/login");
+    }
   };
 
   return (

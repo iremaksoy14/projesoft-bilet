@@ -1,5 +1,6 @@
 // src/services/tripApi.ts
 import { api } from "./api";
+import type { FetchBaseQueryError, FetchArgs } from "@reduxjs/toolkit/query";
 
 export interface City {
   id: number;
@@ -50,38 +51,37 @@ export const tripApi = api.injectEndpoints({
 
     getTripById: build.query<Trip, number>({
       query: (id) => `trips/${id}`,
-      providesTags: (r, e, id) => [{ type: "Trips", id }],
+      providesTags: (_r, _e, id) => [{ type: "Trips", id }],
     }),
 
     reserveSeats: build.mutation<{ ok: true }, ReserveSeatsArg>({
       async queryFn(arg, _api, _extra, baseQuery) {
-        const tripRes: any = await baseQuery({ url: `/trips/${arg.tripId}` });
-        if (tripRes.error) return { error: tripRes.error as any };
-        const trip = tripRes.data as Trip;
+        const tripRes = await baseQuery<Trip>({ url: `/trips/${arg.tripId}` });
+        if (tripRes.error) return { error: tripRes.error };
+        const trip = tripRes.data;
 
         const taken = new Set((trip.occupiedSeats ?? []).map((s) => s.seatNo));
         const conflicts = arg.seats.filter((s) => taken.has(s));
         if (conflicts.length) {
-          return {
-            error: {
-              status: 409,
-              data: { message: `Koltuk(lar) dolu: ${conflicts.join(", ")}` },
-            } as any,
+          const conflictError: FetchBaseQueryError = {
+            status: 409,
+            data: { message: `Koltuk(lar) dolu: ${conflicts.join(", ")}` },
           };
+          return { error: conflictError };
         }
 
-        const gender = (arg.gender ?? "M") as "M" | "F";
+        const gender: "M" | "F" = arg.gender ?? "M";
         const next: OccupiedSeat[] = [
           ...(trip.occupiedSeats ?? []),
           ...arg.seats.map((seatNo) => ({ seatNo, gender })),
         ];
 
-        const patchRes: any = await baseQuery({
+        const patchRes = await baseQuery<Trip>({
           url: `/trips/${arg.tripId}`,
           method: "PATCH",
           body: { occupiedSeats: next },
-        });
-        if (patchRes.error) return { error: patchRes.error as any };
+        } as FetchArgs);
+        if (patchRes.error) return { error: patchRes.error };
 
         return { data: { ok: true } };
       },

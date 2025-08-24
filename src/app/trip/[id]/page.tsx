@@ -2,7 +2,7 @@
 import { useParams, useRouter } from "next/navigation";
 import { useGetTripByIdQuery } from "@/services/tripApi";
 import { useAppSelector } from "@/lib/hooks";
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import { Legend } from "../../../components/Legend";
 import { SeatPair } from "@/components/Seatpair";
 import { Row } from "@/components/Row";
