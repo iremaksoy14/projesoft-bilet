@@ -139,7 +139,7 @@ export default function RegisterPage() {
                         <UserIcon className="h-5 w-5 text-gray-400" />
                         <Field
                           name="firstName"
-                          className="ml-2 w-full outline-none"
+                          className="ml-2 w-full outline-none text-gray-500"
                         />
                       </div>
                       <ErrorMessage
@@ -163,7 +163,7 @@ export default function RegisterPage() {
                         <UserIcon className="h-5 w-5 text-gray-400" />
                         <Field
                           name="lastName"
-                          className="ml-2 w-full outline-none"
+                          className="ml-2 w-full outline-none text-gray-500"
                         />
                       </div>
                       <ErrorMessage
@@ -191,7 +191,7 @@ export default function RegisterPage() {
                         type="email"
                         name="email"
                         autoComplete="email"
-                        className="ml-2 w-full outline-none"
+                        className="ml-2 w-full outline-none text-gray-500"
                       />
                     </div>
                     <ErrorMessage
@@ -219,7 +219,7 @@ export default function RegisterPage() {
                         name="password"
                         autoComplete="new-password"
                         placeholder="En az 8 karakter, 1 büyük/küçük harf ve 1 rakam"
-                        className="ml-2 w-full outline-none"
+                        className="ml-2 w-full outline-none text-gray-500"
                       />
                     </div>
                     <ErrorMessage

@@ -90,7 +90,7 @@ export default function LoginPage() {
                         type="email"
                         name="email"
                         placeholder="user@example.com"
-                        className="ml-2 w-full outline-none"
+                        className="ml-2 w-full outline-none text-gray-500"
                         autoComplete="email"
                       />
                     </div>
@@ -118,7 +118,7 @@ export default function LoginPage() {
                         type="password"
                         name="password"
                         placeholder="••••••••"
-                        className="ml-2 w-full outline-none"
+                        className="ml-2 w-full outline-none text-gray-500"
                         autoComplete="current-password"
                       />
                     </div>

@@ -45,7 +45,6 @@ export default function AuthGuard({ children }: { children: ReactNode }) {
 
   if (isPublic) return <>{children}</>;
 
-  console.log(user, "user");
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
