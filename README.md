@@ -15,7 +15,12 @@ npm run mock
 ## Kurulum
 ```bash
 npm install
-npm run dev   
+npm run dev
+
+
+
+demo@user.com
+Demo1234!
 
 
 
