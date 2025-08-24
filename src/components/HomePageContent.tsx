@@ -9,7 +9,7 @@ import {
 import { useGetCitiesQuery } from "@/services/tripApi";
 import Select from "@/components/Select";
 import DatePicker from "@/components/DatePicker";
-
+import { toYYYYMMDD } from "@/helpers";
 export default function HomePageContent() {
   const { data: cities, isLoading } = useGetCitiesQuery();
   const router = useRouter();
@@ -72,7 +72,7 @@ export default function HomePageContent() {
     const q = new URLSearchParams({
       fromCityId,
       toCityId,
-      date: date.toISOString().slice(0, 10),
+      date: toYYYYMMDD(new Date(date)),
     });
     router.push(`/inquiry?${q.toString()}`);
   };

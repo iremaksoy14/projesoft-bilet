@@ -15,3 +15,8 @@ export const formatExp = (v: string) =>
     .replace(/\D/g, "")
     .slice(0, 4)
     .replace(/(\d{2})(?=\d)/, "$1/");
+
+export const toYYYYMMDD = (date: Date) => {
+  const tzOffsetMs = date.getTimezoneOffset() * 60_000;
+  return new Date(date.getTime() - tzOffsetMs).toISOString().slice(0, 10);
+};

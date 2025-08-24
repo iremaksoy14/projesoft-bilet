@@ -14,6 +14,7 @@ Modern bir biletleme uygulaması. Kullanıcılar kayıt olabilir, giriş yapabil
 - react-day-picker ^9.9.0
 
 ## Özellikler
+
 - Kayıt / Giriş (Formik + Yup doğrulama, client-side guard)
 - Sefer arama: şehir, tarih ile filtreleme
 - Koltuk seçimi & rezervasyon (RTK Query mutation)
@@ -40,6 +41,9 @@ Demo1234!
 
 
 
+
+##Uygun Seferler
+İstanbul (34)  -> Ankara (6)     2025-08-25
 
 
 ````

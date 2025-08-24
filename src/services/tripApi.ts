@@ -59,7 +59,6 @@ export const tripApi = api.injectEndpoints({
 
     reserveSeats: build.mutation<{ ok: true }, ReserveSeatsArg>({
       async queryFn(arg, _api, _extra, baseQuery) {
-        // 1) Trip'i getir
         const tripRes = (await baseQuery({
           url: `/trips/${arg.tripId}`,
         } as FetchArgs)) as QueryReturnValue<Trip, FetchBaseQueryError>;
@@ -67,7 +66,6 @@ export const tripApi = api.injectEndpoints({
         if (tripRes.error) return { error: tripRes.error };
         const trip = tripRes.data!; // Trip
 
-        // 2) Çakışma kontrolü
         const taken = new Set((trip.occupiedSeats ?? []).map((s) => s.seatNo));
         const conflicts = arg.seats.filter((s) => taken.has(s));
         if (conflicts.length) {
