@@ -1,6 +1,9 @@
-// src/services/tripApi.ts
 import { api } from "./api";
-import type { FetchBaseQueryError, FetchArgs } from "@reduxjs/toolkit/query";
+import type {
+  FetchBaseQueryError,
+  FetchArgs,
+  QueryReturnValue,
+} from "@reduxjs/toolkit/query";
 
 export interface City {
   id: number;
@@ -56,10 +59,15 @@ export const tripApi = api.injectEndpoints({
 
     reserveSeats: build.mutation<{ ok: true }, ReserveSeatsArg>({
       async queryFn(arg, _api, _extra, baseQuery) {
-        const tripRes = await baseQuery<Trip>({ url: `/trips/${arg.tripId}` });
-        if (tripRes.error) return { error: tripRes.error };
-        const trip = tripRes.data;
+        // 1) Trip'i getir
+        const tripRes = (await baseQuery({
+          url: `/trips/${arg.tripId}`,
+        } as FetchArgs)) as QueryReturnValue<Trip, FetchBaseQueryError>;
 
+        if (tripRes.error) return { error: tripRes.error };
+        const trip = tripRes.data!; // Trip
+
+        // 2) Çakışma kontrolü
         const taken = new Set((trip.occupiedSeats ?? []).map((s) => s.seatNo));
         const conflicts = arg.seats.filter((s) => taken.has(s));
         if (conflicts.length) {
@@ -70,17 +78,19 @@ export const tripApi = api.injectEndpoints({
           return { error: conflictError };
         }
 
+        // 3) Koltukları güncelle
         const gender: "M" | "F" = arg.gender ?? "M";
         const next: OccupiedSeat[] = [
           ...(trip.occupiedSeats ?? []),
           ...arg.seats.map((seatNo) => ({ seatNo, gender })),
         ];
 
-        const patchRes = await baseQuery<Trip>({
+        const patchRes = (await baseQuery({
           url: `/trips/${arg.tripId}`,
           method: "PATCH",
           body: { occupiedSeats: next },
-        } as FetchArgs);
+        } as FetchArgs)) as QueryReturnValue<unknown, FetchBaseQueryError>;
+
         if (patchRes.error) return { error: patchRes.error };
 
         return { data: { ok: true } };
