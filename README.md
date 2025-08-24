@@ -6,15 +6,14 @@ Modern bir biletleme uygulaması. Kullanıcılar kayıt olabilir, giriş yapabil
 
 ## Teknolojiler
 
-- Next.js (App Router) – TypeScript
-- Redux Toolkit + RTK Query
-- Tailwind CSS, Headless UI
-- Yup, Formik
-- json-server (Mock API)
-- react-day-picker
+- Next.js (App Router) – TypeScript 15.5.0-
+- Redux Toolkit + RTK Query 9.2.0
+- Tailwind CSS, Headless UI ^4. ^2.2.7
+- Yup, Formik ^1.7.0 , ^2.4.6
+- json-server (Mock API) 1.0.0-beta.3
+- react-day-picker ^9.9.0
 
 ## Özellikler
-
 - Kayıt / Giriş (Formik + Yup doğrulama, client-side guard)
 - Sefer arama: şehir, tarih ile filtreleme
 - Koltuk seçimi & rezervasyon (RTK Query mutation)
