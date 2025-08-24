@@ -3,6 +3,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { useSearchTripsQuery, useGetCitiesQuery } from "@/services/tripApi";
 import { Skeleton } from "@/components/Skeleton";
+import { EmptyResults } from "@/components/EmptyResults";
 
 export default function InquiryPage() {
   const sp = useSearchParams();
@@ -65,20 +66,7 @@ export default function InquiryPage() {
           )}
 
           {!isFetching && processed.length === 0 && (
-            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 text-center">
-              <div className="text-lg font-semibold mb-1">
-                Uygun sefer bulunamadı
-              </div>
-              <p className="text-gray-600">Farklı bir tarih seçmeyi deneyin.</p>
-              <div className="mt-4">
-                <button
-                  onClick={back}
-                  className="h-10 px-4 rounded-lg border border-gray-300 hover:bg-gray-50"
-                >
-                  Aramayı Değiştir
-                </button>
-              </div>
-            </div>
+            <EmptyResults onBack={back} />
           )}
 
           {processed.map((t) => {
