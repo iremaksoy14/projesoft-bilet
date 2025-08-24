@@ -1,9 +1,8 @@
 "use client";
-
 import { useAppSelector } from "@/lib/hooks";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import HomePageContent from "@/components/HomePageContent"; // mevcut homepage içeriğini buraya taşıyoruz
+import HomePageContent from "@/components/HomePageContent";
 
 export default function HomePage() {
   const user = useAppSelector((s) => s.auth.user);
@@ -16,10 +15,8 @@ export default function HomePage() {
   }, [user, router]);
 
   if (!user) {
-    // Kullanıcı login değilken, yönlendirme yapılana kadar boş render
     return <div className="p-6">Yönlendiriliyor...</div>;
   }
 
-  // Kullanıcı login ise normal homepage açılır
   return <HomePageContent />;
 }

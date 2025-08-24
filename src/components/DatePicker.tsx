@@ -1,6 +1,4 @@
-// src/components/DatePicker.tsx
 "use client";
-
 import { Popover, Transition, Portal } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { DayPicker } from "react-day-picker";
@@ -40,13 +38,10 @@ export default function DatePicker({
           leaveFrom="opacity-100 translate-y-0"
           leaveTo="opacity-0 translate-y-1"
         >
-          {/* Paneli body’ye taşıdık ve tetikleyicinin üstünde göstereceğiz */}
           <Popover.Panel
             static
             className="fixed z-50 w-[320px] rounded-xl bg-white p-2 shadow-lg ring-1 ring-black/5"
-            // Konumu butonun alt/üstüne sabitle
             style={{
-              // Anchor elem koordinatını alıp paneli sağa hizala
               right: `calc(100vw - ${(() => {
                 const el = document.activeElement as HTMLElement | null;
                 const rect = el?.getBoundingClientRect();
@@ -55,10 +50,9 @@ export default function DatePicker({
               top: `${(() => {
                 const el = document.activeElement as HTMLElement | null;
                 const rect = el?.getBoundingClientRect();
-                // ÜSTE AÇ: inputun üstüne oturt
-                return rect ? `${Math.round(rect.top) - 8}px` : 0; // 8px boşluk
+                return rect ? `${Math.round(rect.top) - 8}px` : 0;
               })()}`,
-              transform: "translateY(-100%)", // üstte aç
+              transform: "translateY(-100%)",
             }}
             onClick={(e) => e.stopPropagation()}
           >

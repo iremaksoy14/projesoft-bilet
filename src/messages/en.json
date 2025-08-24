@@ -1,0 +1,68 @@
+{
+  "Common": {
+    "search": "Search Trips",
+    "logout": "Logout",
+    "back": "Back",
+    "price": "Price",
+    "total": "Total",
+    "next": "Next",
+    "date": "Date",
+    "time": "Time"
+  },
+  "Auth": {
+    "loginTitle": "Login",
+    "registerTitle": "Register",
+    "email": "Email",
+    "password": "Password",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "goLogin": "Login",
+    "goRegister": "Register"
+  },
+  "Home": {
+    "title": "Bus Ticket Search",
+    "subtitle": "Select departure/arrival cities and a date; we'll list the available trips.",
+    "from": "From",
+    "to": "To",
+    "tripDate": "Trip Date",
+    "sameCityError": "Departure and arrival cities must be different.",
+    "fillAll": "Please select departure, arrival, and date."
+  },
+  "Inquiry": {
+    "results": "{count} results",
+    "empty": "No trips found",
+    "changeSearch": "Change Search",
+    "emptySeats": "Empty Seats"
+  },
+  "Trip": {
+    "title": "Trip Details",
+    "seatSelect": "Seat Selection",
+    "selected": "Selected: {count}/{max}",
+    "layout2x2": "2+2 Layout",
+    "occupiedM": "Occupied (M)",
+    "occupiedF": "Occupied (F)",
+    "chosen": "Selected"
+  },
+  "Payment": {
+    "title": "Payment",
+    "secure": "Secure payment page",
+    "holder": "Cardholder Name",
+    "cardNo": "Card Number",
+    "exp": "Exp (MM/YY)",
+    "cvv": "CVV",
+    "agree": "I have read and accept the preliminary information form and the distance sales contract.",
+    "confirm": "Confirm Payment",
+    "summary": "Order Summary"
+  },
+  "Validation": {
+    "emailValid": "Enter a valid email",
+    "required": "Required",
+    "min2": "At least 2 characters",
+    "passwordMin": "At least 8 characters",
+    "passwordUpper": "At least 1 uppercase letter",
+    "passwordLower": "At least 1 lowercase letter",
+    "passwordDigit": "At least 1 digit",
+    "genderRequired": "Gender is required",
+    "birthRequired": "Birth date is required"
+  }
+}

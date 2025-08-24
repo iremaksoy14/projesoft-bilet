@@ -1,4 +1,3 @@
-// src/components/Select.tsx
 "use client";
 import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
@@ -7,7 +6,7 @@ import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/24/solid";
 export type Option<T extends string> = { label: string; value: T };
 
 export default function Select<T extends string>({
-  value, // "M" | "F" | null | undefined
+  value,
   onChange,
   options,
   placeholder = "Seçin",
@@ -17,14 +16,12 @@ export default function Select<T extends string>({
   options: Option<T>[];
   placeholder?: string;
 }) {
-  // Her zaman kontrollü: seçili option objesi ya da null
   const selected = options.find((o) => o.value === value) ?? null;
 
   return (
     <Listbox
-      value={selected} // ✔️ option objesi (veya null)
+      value={selected}
       onChange={(opt: Option<T> | null) => {
-        // opt asla undefined olmaz
         if (opt) onChange(opt.value);
       }}
     >
@@ -54,7 +51,7 @@ export default function Select<T extends string>({
             {options.map((opt) => (
               <Listbox.Option
                 key={opt.value}
-                value={opt} // ✔️ option objesi
+                value={opt}
                 className={({ active }) =>
                   `relative cursor-default select-none py-2 pl-10 pr-4 ${
                     active ? "bg-indigo-50 text-indigo-700" : "text-gray-900"

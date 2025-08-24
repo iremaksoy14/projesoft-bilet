@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-
+import { baseURL } from "../lib/baseUrl";
 export interface User {
   id: number;
   email: string;
@@ -23,24 +23,30 @@ export const login = createAsyncThunk<
   { email: string; password: string }
 >("auth/login", async (payload, { rejectWithValue }) => {
   const res = await fetch(
-    `http://localhost:4000/users?email=${encodeURIComponent(payload.email)}`
+    `${baseURL}/users?email=${encodeURIComponent(payload.email)}`
   );
   const users: User[] = await res.json();
   const found = users.find((u) => u.password === payload.password);
-  if (!found) return rejectWithValue("E-posta veya şifre hatalı");
+  if (!found) return rejectWithValue("Email veya parola hatalıdır");
   return found;
 });
 
 export const register = createAsyncThunk<User, Omit<User, "id">>(
   "auth/register",
   async (payload, { rejectWithValue }) => {
+    // check login
     const existsRes = await fetch(
-      `http://localhost:4000/users?email=${encodeURIComponent(payload.email)}`
+      ` ${baseURL}/users?email=${encodeURIComponent(payload.email)}`
     );
     const exists: User[] = await existsRes.json();
-    if (exists.length > 0) return rejectWithValue("E-posta zaten kayıtlı");
 
-    const createRes = await fetch("http://localhost:4000/users", {
+    if (exists.length > 0)
+      return rejectWithValue(
+        "E-posta adresi zaten kayıtlı. Lütfen başka bir e-posta adresi giriniz"
+      );
+
+    //register
+    const createRes = await fetch(`${baseURL}/users`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),

@@ -17,15 +17,6 @@
       "password": "Adana19559",
       "gender": "F",
       "birthDate": "1997-11-14"
-    },
-    {
-      "id": "924e",
-      "firstName": "Ceren",
-      "lastName": "Aksoy",
-      "email": "aksoyceren@gmail.com",
-      "password": "Test123456",
-      "gender": "F",
-      "birthDate": "2020-05-11"
     }
   ],
   "cities": [
@@ -70,6 +61,38 @@
         {
           "seatNo": "3B",
           "gender": "M"
+        },
+        {
+          "seatNo": "3C",
+          "gender": "F"
+        },
+        {
+          "seatNo": "4C",
+          "gender": "F"
+        },
+        {
+          "seatNo": "6C",
+          "gender": "F"
+        },
+        {
+          "seatNo": "6A",
+          "gender": "F"
+        },
+        {
+          "seatNo": "6B",
+          "gender": "F"
+        },
+        {
+          "seatNo": "7B",
+          "gender": "F"
+        },
+        {
+          "seatNo": "7A",
+          "gender": "F"
+        },
+        {
+          "seatNo": "8A",
+          "gender": "F"
         }
       ]
     },
@@ -84,7 +107,32 @@
         "rows": 10,
         "colsPerSide": 2
       },
-      "occupiedSeats": []
+      "occupiedSeats": [
+        {
+          "seatNo": "1A",
+          "gender": "M"
+        },
+        {
+          "seatNo": "1C",
+          "gender": "M"
+        },
+        {
+          "seatNo": "2A",
+          "gender": "M"
+        },
+        {
+          "seatNo": "4B",
+          "gender": "M"
+        },
+        {
+          "seatNo": "2C",
+          "gender": "M"
+        },
+        {
+          "seatNo": "2D",
+          "gender": "M"
+        }
+      ]
     },
     {
       "id": "1003",

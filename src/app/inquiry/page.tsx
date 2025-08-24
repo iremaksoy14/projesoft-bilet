@@ -1,10 +1,8 @@
 "use client";
-
 import { useSearchParams, useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useSearchTripsQuery, useGetCitiesQuery } from "@/services/tripApi";
-
-type SortKey = "time" | "price";
+import { Skeleton } from "@/components/Skeleton";
 
 export default function InquiryPage() {
   const sp = useSearchParams();
@@ -25,90 +23,38 @@ export default function InquiryPage() {
     [cities]
   );
   const fromCity = cityById.get(fromCityId) ?? "—";
+
   const toCity = cityById.get(toCityId) ?? "—";
-
-  // ufak sıralama ve fiyat aralığı filtresi
-  const [sortBy, setSortBy] = useState<SortKey>("time");
-  const [maxPrice, setMaxPrice] = useState<number | "">("");
-
   const processed = useMemo(() => {
     let list = [...(trips ?? [])];
-    if (typeof maxPrice === "number")
-      list = list.filter((t) => t.price <= maxPrice);
-    if (sortBy === "time") {
-      list.sort((a, b) => a.time.localeCompare(b.time));
-    } else {
-      list.sort((a, b) => a.price - b.price);
-    }
+    list.sort((a, b) => a.price - b.price);
     return list;
-  }, [trips, sortBy, maxPrice]);
+  }, [trips]);
 
-  // skeleton kart
-  const Skeleton = () => (
-    <div className="animate-pulse bg-gray-100 rounded-xl p-4 h-28" />
-  );
-
-  const back = () => router.back();
+  const back = () => router.push("/");
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-gray-100 px-4 py-8">
+    <div className="min-h-[calc(100vh-4rem)] bg-indigo-50/30 px-4 py-8">
       <div className="mx-auto w-full max-w-5xl">
-        {/* başlık/özet */}
-        <div className="mb-6 flex flex-col md:flex-row md:items-end md:justify-between gap-3">
-          <div>
-            <button
-              onClick={back}
-              className="text-sm text-gray-600 hover:text-gray-900 underline"
-            >
-              ← Geri
-            </button>
-            <h1 className="text-2xl md:text-3xl font-extrabold mt-1">
-              {fromCity} → {toCity}
-            </h1>
-            <p className="text-gray-600">
-              {date} • {trips?.length ?? 0} sonuç
-            </p>
-          </div>
-
-          {/* filtre/sıralama */}
-          {/* <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2">
-              <label htmlFor="sort" className="text-sm text-gray-700">
-                Sırala
-              </label>
-              <select
-                id="sort"
-                className="h-10 rounded-lg border border-gray-300 bg-white px-3"
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as SortKey)}
+        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 mb-6">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+            <div>
+              <button
+                onClick={back}
+                className="text-sm text-gray-600 hover:text-gray-900 underline"
               >
-                <option value="time">Saat (Artan)</option>
-                <option value="price">Fiyat (Artan)</option>
-              </select>
+                ← Geri
+              </button>
+              <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900 mt-1">
+                {fromCity} → {toCity}
+              </h1>
+              <p className="text-gray-600">
+                {date} • {trips?.length ?? 0} sonuç
+              </p>
             </div>
-            <div className="flex items-center gap-2">
-              <label htmlFor="max" className="text-sm text-gray-700">
-                Maks. Fiyat
-              </label>
-              <input
-                id="max"
-                type="number"
-                inputMode="numeric"
-                min={0}
-                className="h-10 w-28 rounded-lg border border-gray-300 bg-white px-3"
-                value={maxPrice === "" ? "" : String(maxPrice)}
-                onChange={(e) =>
-                  setMaxPrice(
-                    e.target.value === "" ? "" : Number(e.target.value)
-                  )
-                }
-                placeholder="₺"
-              />
-            </div>
-          </div> */}
+          </div>
         </div>
 
-        {/* liste */}
         <div className="grid gap-4">
           {isFetching && (
             <>
@@ -119,13 +65,11 @@ export default function InquiryPage() {
           )}
 
           {!isFetching && processed.length === 0 && (
-            <div className="bg-white rounded-2xl shadow p-8 text-center">
+            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 text-center">
               <div className="text-lg font-semibold mb-1">
                 Uygun sefer bulunamadı
               </div>
-              <p className="text-gray-600">
-                Filtreleri gevşetmeyi ya da farklı bir tarih seçmeyi deneyin.
-              </p>
+              <p className="text-gray-600">Farklı bir tarih seçmeyi deneyin.</p>
               <div className="mt-4">
                 <button
                   onClick={back}
@@ -143,15 +87,15 @@ export default function InquiryPage() {
             return (
               <div
                 key={t.id}
-                className="bg-white rounded-2xl shadow p-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+                className="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
               >
                 <div className="flex items-center gap-4">
-                  <div className="h-12 w-12 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold">
+                  <div className="h-12 w-16 rounded-xl bg-gradient-to-r from-fuchsia-600 to-indigo-600 text-white flex items-center justify-center font-bold">
                     {t.time}
                   </div>
                   <div>
                     <div className="text-sm text-gray-500">{date}</div>
-                    <div className="text-lg font-semibold">
+                    <div className="text-lg font-semibold text-gray-900">
                       {fromCity} → {toCity}
                     </div>
                     <div className="text-sm text-gray-600">
@@ -167,11 +111,14 @@ export default function InquiryPage() {
                     <div className="text-xs uppercase tracking-wide text-gray-500">
                       Fiyat
                     </div>
-                    <div className="text-2xl font-extrabold">₺{t.price}</div>
+                    <div className="text-2xl font-extrabold text-gray-900">
+                      ₺{t.price}
+                    </div>
                   </div>
                   <a
                     href={`/trip/${t.id}`}
-                    className="h-11 inline-flex items-center justify-center rounded-lg bg-indigo-600 px-5 font-semibold text-white hover:bg-indigo-700"
+                    className="h-11 inline-flex items-center justify-center rounded-lg px-5 font-semibold text-white
+                               bg-gradient-to-r from-fuchsia-600 to-indigo-600 hover:from-fuchsia-500 hover:to-indigo-500"
                   >
                     Detaya Git
                   </a>
@@ -181,7 +128,6 @@ export default function InquiryPage() {
           })}
         </div>
 
-        {/* alt bilgi */}
         {!isFetching && processed.length > 0 && (
           <p className="text-xs text-gray-500 mt-4">
             Fiyatlar seçtiğiniz tarihte geçerlidir. Koltuk uygunluğu anlık

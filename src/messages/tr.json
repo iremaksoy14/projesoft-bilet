@@ -1,0 +1,69 @@
+
+{
+  "Common": {
+    "search": "Sefer Ara",
+    "logout": "Çıkış Yap",
+    "back": "Geri",
+    "price": "Fiyat",
+    "total": "Toplam",
+    "next": "Devam",
+    "date": "Tarih",
+    "time": "Saat"
+  },
+  "Auth": {
+    "loginTitle": "Giriş Yap",
+    "registerTitle": "Kayıt Ol",
+    "email": "E-mail",
+    "password": "Parola",
+    "noAccount": "Hesabın yok mu?",
+    "haveAccount": "Zaten hesabın var mı?",
+    "goLogin": "Giriş yap",
+    "goRegister": "Kayıt ol"
+  },
+  "Home": {
+    "title": "Otobüs Bilet Arama",
+    "subtitle": "Kalkış/varış şehirlerini ve tarihi seçin; uygun seferleri listeleyelim.",
+    "from": "Kalkış",
+    "to": "Varış",
+    "tripDate": "Sefer Tarihi",
+    "sameCityError": "Kalkış ve varış şehirleri farklı olmalı.",
+    "fillAll": "Lütfen kalkış, varış ve tarih seçin."
+  },
+  "Inquiry": {
+    "results": "{count} sonuç",
+    "empty": "Uygun sefer bulunamadı",
+    "changeSearch": "Aramayı Değiştir",
+    "emptySeats": "Boş Koltuk"
+  },
+  "Trip": {
+    "title": "Sefer Detayları",
+    "seatSelect": "Koltuk Seçimi",
+    "selected": "Seçili: {count}/{max}",
+    "layout2x2": "2+2 Düzen",
+    "occupiedM": "Dolu (E)",
+    "occupiedF": "Dolu (K)",
+    "chosen": "Seçili"
+  },
+  "Payment": {
+    "title": "Ödeme",
+    "secure": "Güvenli ödeme sayfası",
+    "holder": "Kart Üzerindeki İsim",
+    "cardNo": "Kart Numarası",
+    "exp": "SKT (AA/YY)",
+    "cvv": "CVV",
+    "agree": "Ön bilgilendirme formu ve mesafeli satış sözleşmesi şartlarını okudum, kabul ediyorum.",
+    "confirm": "Ödemeyi Onayla",
+    "summary": "Sipariş Özeti"
+  },
+  "Validation": {
+    "emailValid": "Geçerli bir e-mail",
+    "required": "Zorunlu",
+    "min2": "En az 2 karakter",
+    "passwordMin": "En az 8 karakter",
+    "passwordUpper": "1 büyük harf",
+    "passwordLower": "1 küçük harf",
+    "passwordDigit": "1 rakam",
+    "genderRequired": "Cinsiyet zorunlu",
+    "birthRequired": "Doğum tarihi zorunlu"
+  }
+}
