@@ -7,7 +7,7 @@ import { Legend } from "../../../components/Legend";
 import { SeatPair } from "@/components/Seatpair";
 import { Row } from "@/components/Row";
 import { seatLabel } from "@/helpers";
-import { ErrorMessage } from "@/components/ErrorMessage";
+import { ErrorMessage } from "@/components/messages/ErrorMessage";
 export default function TripDetailsPage() {
   const { id } = useParams<{ id: string }>();
   const tripId = Number(id);
@@ -201,7 +201,7 @@ export default function TripDetailsPage() {
 
             <button
               onClick={() => router.back()}
-              className="mt-2 h-11 w-full rounded-lg border border-gray-300 hover:bg-gray-50"
+              className="mt-2 h-11 w-full text-black rounded-lg border border-gray-300 hover:bg-gray-50"
             >
               Geri Dön
             </button>

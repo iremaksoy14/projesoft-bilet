@@ -10,7 +10,7 @@ import { formatCard, formatExp } from "@/helpers";
 import { InfoPill } from "@/components/InfoPill";
 import { FormArea } from "@/components/FormArea";
 import { Row } from "@/components/Row";
-import { SuccessMessage } from "@/components/SuccessMessage";
+import { SuccessMessage } from "@/components/messages/SuccessMessage";
 
 export default function PaymentPage() {
   const sp = useSearchParams();
@@ -144,7 +144,7 @@ export default function PaymentPage() {
                 label="Kart Üzerindeki İsim"
                 input={
                   <input
-                    className="w-full h-11 rounded-lg border border-gray-300 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500/60"
+                    className="w-full h-11 rounded-lg border border-gray-300 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500/60 text-black"
                     placeholder="AD SOYAD"
                     autoComplete="cc-name"
                     value={holder}
@@ -157,7 +157,7 @@ export default function PaymentPage() {
                 label="Kart Numarası"
                 input={
                   <input
-                    className="w-full h-11 rounded-lg border border-gray-300 px-3 tracking-widest focus:outline-none focus:ring-2 focus:ring-indigo-500/60"
+                    className=" text-black w-full h-11 rounded-lg border border-gray-300 px-3 tracking-widest focus:outline-none focus:ring-2 focus:ring-indigo-500/60"
                     inputMode="numeric"
                     autoComplete="cc-number"
                     placeholder="1234 5678 9012 3456"
@@ -172,7 +172,7 @@ export default function PaymentPage() {
                   label="SKT (AA/YY)"
                   input={
                     <input
-                      className="w-full h-11 rounded-lg border border-gray-300 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500/60"
+                      className=" text-black w-full h-11 rounded-lg border border-gray-300 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500/60"
                       inputMode="numeric"
                       autoComplete="cc-exp"
                       placeholder="MM/YY"
@@ -185,7 +185,7 @@ export default function PaymentPage() {
                   label="CVV"
                   input={
                     <input
-                      className="w-full h-11 rounded-lg border border-gray-300 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500/60"
+                      className=" text-black w-full h-11 rounded-lg border border-gray-300 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500/60"
                       inputMode="numeric"
                       autoComplete="cc-csc"
                       placeholder="123"

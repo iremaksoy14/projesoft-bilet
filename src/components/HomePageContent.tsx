@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import {
   ArrowsRightLeftIcon,
@@ -120,7 +120,7 @@ export default function HomePageContent() {
                 <button
                   type="button"
                   onClick={swap}
-                  className="mt-2 md:mt-6 inline-flex items-center gap-2 rounded-xl border border-gray-300 px-3 py-2 hover:bg-gray-50"
+                  className="mt-2 md:mt-6 inline-flex items-center gap-2 rounded-xl border border-gray-300 px-3 py-2 hover:bg-gray-50 text-gray-500"
                   title="Kalkış / Varış değiştir"
                 >
                   <ArrowsRightLeftIcon className="h-5 w-5" />

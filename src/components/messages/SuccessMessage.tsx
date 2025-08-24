@@ -1,6 +1,5 @@
 "use client";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
-
 export function SuccessMessage({
   title = "Başarılı!",
   description,

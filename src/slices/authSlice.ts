@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { baseURL } from "../lib/baseUrl";
+import { saveUser, loadUser, clearUser } from "@/lib/storage";
 export interface User {
   id: number;
   email: string;
@@ -20,7 +21,8 @@ const initialState: AuthState = { user: null, loading: false, error: null };
 
 export const login = createAsyncThunk<
   User,
-  { email: string; password: string }
+  { email: string; password: string },
+  { rejectValue: string }
 >("auth/login", async (payload, { rejectWithValue }) => {
   const res = await fetch(
     `${baseURL}/users?email=${encodeURIComponent(payload.email)}`
@@ -31,37 +33,40 @@ export const login = createAsyncThunk<
   return found;
 });
 
-export const register = createAsyncThunk<User, Omit<User, "id">>(
-  "auth/register",
-  async (payload, { rejectWithValue }) => {
-    // check login
-    const existsRes = await fetch(
-      ` ${baseURL}/users?email=${encodeURIComponent(payload.email)}`
+export const register = createAsyncThunk<
+  User,
+  Omit<User, "id">,
+  { rejectValue: string }
+>("auth/register", async (payload, { rejectWithValue }) => {
+  const existsRes = await fetch(
+    `${baseURL}/users?email=${encodeURIComponent(payload.email)}` // ⬅️ baştaki boşluk kaldırıldı
+  );
+  const exists: User[] = await existsRes.json();
+  if (exists.length > 0) {
+    return rejectWithValue(
+      "E-posta adresi zaten kayıtlı. Lütfen başka bir e-posta adresi giriniz"
     );
-    const exists: User[] = await existsRes.json();
-
-    if (exists.length > 0)
-      return rejectWithValue(
-        "E-posta adresi zaten kayıtlı. Lütfen başka bir e-posta adresi giriniz"
-      );
-
-    //register
-    const createRes = await fetch(`${baseURL}/users`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    const created = await createRes.json();
-    return created as User;
   }
-);
+
+  const createRes = await fetch(`${baseURL}/users`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  const created = (await createRes.json()) as User;
+  return created;
+});
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    setUser(state, action: PayloadAction<User | null>) {
+      state.user = action.payload;
+    },
     logout(state) {
       state.user = null;
+      clearUser();
     },
   },
   extraReducers: (builder) => {
@@ -73,6 +78,7 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (s, a: PayloadAction<User>) => {
         s.loading = false;
         s.user = a.payload;
+        saveUser(a.payload);
       })
       .addCase(login.rejected, (s, a) => {
         s.loading = false;
@@ -92,5 +98,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { logout, setUser } = authSlice.actions;
 export default authSlice.reducer;

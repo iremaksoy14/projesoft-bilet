@@ -30,3 +30,7 @@ body {
 .rdp-day_selected:not([disabled]) {
   color: #fff;
 }
+.rdp-day_button,
+.rdp-weekday {
+  color: black !important;
+}

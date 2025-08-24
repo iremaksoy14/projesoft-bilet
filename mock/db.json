@@ -93,6 +93,18 @@
         {
           "seatNo": "8A",
           "gender": "F"
+        },
+        {
+          "seatNo": "10C",
+          "gender": "F"
+        },
+        {
+          "seatNo": "10D",
+          "gender": "F"
+        },
+        {
+          "seatNo": "7C",
+          "gender": "F"
         }
       ]
     },

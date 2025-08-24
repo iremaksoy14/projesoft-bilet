@@ -31,7 +31,7 @@ export function SeatPair({
           : s;
 
         const base =
-          "relative w-12 h-12 rounded-xl border flex items-center justify-center text-xs font-semibold transition";
+          "relative w-12 h-12 rounded-xl border flex items-center justify-center text-xs font-semibold transition text-black";
         const ring = chosen ? "ring-2 ring-indigo-400/70" : "ring-0";
 
         let style = "bg-white hover:bg-gray-50 border-gray-300";

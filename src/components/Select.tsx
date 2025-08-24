@@ -27,7 +27,7 @@ export default function Select<T extends string>({
     >
       <div className="relative">
         <Listbox.Button
-          className="relative w-full h-11 cursor-default rounded-lg border border-gray-300 bg-white
+          className="relative w-full h-11 cursor-default rounded-lg border border-gray-300 bg-white text-gray-500 
                      py-2 pl-3 pr-10 text-left focus:outline-none focus:ring-2 focus:ring-indigo-500"
         >
           <span className="block truncate">

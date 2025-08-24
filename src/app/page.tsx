@@ -9,12 +9,6 @@ export default function HomePage() {
 
   const router = useRouter();
 
-  useEffect(() => {
-    if (!user) {
-      router.replace("/login");
-    }
-  }, [user, router]);
-
   if (!user) {
     return <div className="p-6">Yönlendiriliyor...</div>;
   }
