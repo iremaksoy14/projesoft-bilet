@@ -71,7 +71,7 @@ export default function PaymentPage() {
       }).unwrap();
 
       setSuccess(true);
-      setTimeout(() => router.push("/"), 2000);
+      setTimeout(() => router.push("/"), 4000);
     } catch (e: any) {
       const msg =
         e?.data?.message ||
