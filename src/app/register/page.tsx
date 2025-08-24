@@ -90,7 +90,7 @@ export default function RegisterPage() {
               </li>
               <li className="flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-white/80" /> Çoklu dil
-                seçeneği eklendi
+                seçeneği için dosyalar eklendi
               </li>
             </ul>
             <p className="mt-auto text-xs text-white/70">

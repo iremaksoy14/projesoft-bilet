@@ -7,8 +7,17 @@
 - Yup, Formik 
 - json-server (Mock API)
 
+
+## Mock json-server'ı başlatmak için 
+```bash
+npm run mock
+
 ## Kurulum
 ```bash
 npm install
-npm run dev       npm run mock  
+npm run dev   
+
+
+
+
 
